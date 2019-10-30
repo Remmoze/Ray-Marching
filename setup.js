@@ -2,10 +2,11 @@ CanvasRenderingContext2D.prototype.clear = function(color) {
     this.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-CanvasRenderingContext2D.prototype.drawLine = function(x1, y1, x2, y2, color = "#ddd", width = 2) {
+CanvasRenderingContext2D.prototype.drawLine = function(x1, y1, x2, y2, color = "#ddd", width = 2, alpha = 1) {
     this.save();
     this.lineWidth = width;
     this.strokeStyle = color;
+	this.globalAlpha = alpha;
     this.beginPath();
     this.moveTo(x1, y1);
     this.lineTo(x2, y2)
