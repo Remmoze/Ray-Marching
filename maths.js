@@ -12,7 +12,7 @@ class Point {
         return new Point(this.x + p.x, this.y + p.y);
     }
 
-    get pos() {return this}
+    get pos() {return this;}
 
     get length() { 
         return Math.sqrt(this.x*this.x + this.y*this.y);

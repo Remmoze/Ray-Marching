@@ -4,8 +4,8 @@ const raySteps = [];
 
 let populateScene = num => {
     for(let i = 0; i < num; i++) {
-        objects.push(new Circle(Math.random() * 1980, Math.random() * 900, Math.max(Math.random() * 30, 15)))
-        objects.push(new Rect(Math.random() * 1980, Math.random() * 900, Math.max(Math.random() * 30, 15), Math.max(Math.random() * 30, 15)))
+        objects.push(new Circle(Math.random() * 1920, Math.random() * 900, Math.max(Math.random() * 30, 15)))
+        objects.push(new Rect(Math.random() * 1920, Math.random() * 900, Math.max(Math.random() * 30, 15), Math.max(Math.random() * 30, 15)))
     }
 }
 
