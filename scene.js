@@ -4,8 +4,8 @@ const raySteps = [];
 
 let populateScene = num => {
     for(let i = 0; i < num; i++) {
-        objects.push(new Circle(Math.random() * 1920, Math.random() * 900, Math.max(Math.random() * 30, 15)))
-        objects.push(new Rect(Math.random() * 1920, Math.random() * 900, Math.max(Math.random() * 30, 15), Math.max(Math.random() * 30, 15)))
+        objects.push(new Circle(Math.random() * (canvas.width-60) + 30, Math.random() * (canvas.height-60) + 30, Math.max(Math.random() * 30, 15)))
+        objects.push(new Rect(Math.random() * (canvas.width-60) + 30, Math.random() * (canvas.height-60) + 30, Math.max(Math.random() * 30, 15), Math.max(Math.random() * 30, 15)))
     }
 }
 
@@ -19,11 +19,11 @@ let recalculateScene = () => {
     raySteps.length = 0;
     for(let i = 0; i < 100; i++) {
         let R = Math.min(...objects.map(obj => marchToShape(prevP, obj)));
-        if(R <= 1) {
-            raySteps.push(new Circle(prevP.x, prevP.y, 7, "red"));
+        let newP = Math.distance.circleRay(new Circle(prevP.x, prevP.y, R), Player.dir);
+        if(R <= 0.5) {
+            raySteps.push(new Circle(newP.x, newP.y, 2, "red"));
             break;
         }
-        let newP = Math.distance.circleRay(new Circle(prevP.x, prevP.y, R), Player.dir);
         if(R > 1000) {
             raySteps.push(new Circle(newP.x, newP.y, 10, "yellow"));
             break;
@@ -39,21 +39,6 @@ let drawScene = context => {
     Player.draw(context);
     objects.forEach(object => object.draw(context));
     raySteps.forEach(ray => ray.draw(context, true, true));
-}
-
-class MarchingBall extends Circle {
-    constructor(x, y, r, px, py, color="#000", pcolor = "cyan") {
-        super(x, y, r, color);
-        this.px = px;
-        this.py = py;
-        this.pcolor = pcolor;
-    }
-
-    draw(context, displayBall = true, displayLine = true) {
-        if(displayBall) context.fillCircle(this.x, this.y, this.r, this.color, 0.2);
-        if(displayBall) context.drawCircle(this.x, this.y, this.r, this.color, 2, 0.7);
-        if(displayLine) context.drawLine(this.x, this.y, this.px, this.py, "cyan");
-    }
 }
 
 // display angle relative to the circle
