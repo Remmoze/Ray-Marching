@@ -17,10 +17,9 @@ let addObject = (x, y, type) => {
 let recalculateScene = () => {
     raySteps.length = 0;
 
-    for(let i=0; i < Math.PI*2; i+=Math.PI/16)
-        raySteps.push(new Ray(Player.pos, i));
+    //for(let i=0; i < Math.PI*2; i+=Math.PI/128)
+        raySteps.push(new Ray(Player.pos, Player.dir));
 
-    /*
     let prevP = Player.pos;
     raySteps.length = 0;
     for(let i = 0; i < 100; i++) {
@@ -37,7 +36,6 @@ let recalculateScene = () => {
         raySteps.push(new MarchingBall(prevP.x, prevP.y, R, newP.x, newP.y));
         prevP = newP;
     }
-    */
 
     requestAnimationFrame(draw);
 }

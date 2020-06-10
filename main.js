@@ -3,7 +3,7 @@ const context = canvas.getContext('2d');
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
-populateScene(50);
+//populateScene(50);
 
 draw = () => {
     context.fillAll("#222");
